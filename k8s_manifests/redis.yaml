@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratelimit-redis
+  namespace: istio-system
+  labels:
+    app: ratelimit
+    version: v1
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: ratelimit-redis
+  template:
+    metadata:
+      labels:
+        app: "ratelimit-redis"
+        version: v1
+    spec:
+      containers:
+      - name: redis
+        image: redis:6.2.4-buster
+        command: ["redis-server", "/etc/config/redis.conf"]
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+          requests:
+            cpu: 1
+            memory: 2Gi
+        ports:
+          - name: redistcp
+            containerPort: 6379
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+        readinessProbe:
+          exec:
+            command: ["bash", "-c", "redis-cli ping"]
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          failureThreshold: 3
+      volumes:
+        - name: config-volume
+          configMap:
+            name: redis-conf
+            items:
+            - key: redis.conf
+              path: redis.conf
