@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  ratelimiter-app:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2021-07-25T16:17:39.102416894Z"
+    description: A Helm chart for Kubernetes
+    digest: 1e09240a842e8c6b66afdb2a55d9aeae12fe21113a2f8cb3cee04fec398f9ea0
+    name: ratelimiter-app
+    type: application
+    urls:
+    - https://github.com/NeuroCode-io/istio-global-ratelimiter/releases/download/ratelimiter-app-0.0.1/ratelimiter-app-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-07-25T16:17:38.911782808Z"
