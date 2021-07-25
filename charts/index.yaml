@@ -4,7 +4,7 @@ entries:
   - apiVersion: v2
     appVersion: 0.0.1
     created: "2021-07-23T13:50:36.08852+02:00"
-    description: A Helm chart for Kubernetes
+    description: A Helm Chart for Kubernetes
     digest: 1bd58234beba1f6e8ed8fd90a3661dc45b56d59d431c6ed7d0ac2909ae0bd128
     name: ratelimiter-app
     type: application
